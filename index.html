@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Notas</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #6e45e2, #88d3ce);
+        }
+        .caixa {
+            width: 350px;
+            padding: 25px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        .nota-input {
+            margin-bottom: 15px;
+        }
+        label {
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            outline: none;
+            text-align: center;
+            font-size: 1rem;
+            background-color: rgba(255, 255, 255, 0.3);
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+        input[type="number"]:focus {
+            background-color: rgba(255, 255, 255, 0.7);
+            color: #333;
+        }
+        button {
+            padding: 12px 30px;
+            cursor: pointer;
+            border: none;
+            border-radius: 12px;
+            background-color: #ff8a00;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #ff6a00;
+        }
+        #resultado {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #fff;
+            font-size: 1.2rem;
+            animation: fadeIn 1s ease;
+        }
+        h1 {
+            color: #fff;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="caixa">
+        <h1>Calculadora de Notas</h1>
+        <div class="nota-input">
+            <label for="nota1">Nota AV1:</label>
+            <input type="number" id="nota1" min="0" max="10" step="0.1">
+        </div>
+        <div class="nota-input">
+            <label for="nota2">Nota AV2:</label>
+            <input type="number" id="nota2" min="0" max="10" step="0.1">
+        </div>
+        <div class="nota-input">
+            <label for="nota3">Nota AVT:</label>
+            <input type="number" id="nota3" min="0" max="10" step="0.1">
+        </div>
+        <button onclick="calcularMedia()">Calcular Média</button>
+        <div id="resultado"></div>
+    </div>
+
+    <script>
+        function calcularMedia() {
+            let nota1 = parseFloat(document.getElementById('nota1').value);
+            let nota2 = parseFloat(document.getElementById('nota2').value);
+            let nota3 = parseFloat(document.getElementById('nota3').value);
+            
+            if (isNaN(nota1) || isNaN(nota2) || isNaN(nota3)) {
+                document.getElementById('resultado').innerHTML = 'Por favor, preencha todas as notas!';
+                return;
+            }
+
+            let media = (nota1 + nota2 + nota3) / 3;
+            document.getElementById('resultado').innerHTML = `A média das notas é ${media.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
